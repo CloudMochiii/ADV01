@@ -55,9 +55,22 @@ def reserve(room_id):
         phone = request.form["phone"]
         check_in_date = request.form["check_in_date"]
         stay_duration = request.form["stay_duration"]
+        gender = request.form["gender"]
 
         conn = sqlite3.connect("boardinghouse.db")
         cursor = conn.cursor()
+
+        cursor.execute("""
+        SELECT gender
+        FROM rooms
+        WHERE id=?
+        """, (room_id,))
+        
+        room_gender = cursor.fetchone()[0]
+        
+        if gender != room_gender:
+            conn.close()
+            return "This room is assigned for the opposite gender."
 
         cursor.execute("""
         INSERT INTO reservations
@@ -83,7 +96,7 @@ def reserve(room_id):
         conn.close()
 
         return render_template("success.html")
-
+    
     conn = sqlite3.connect("boardinghouse.db")
     cursor = conn.cursor()
 
@@ -196,7 +209,7 @@ def approve(id):
     conn = sqlite3.connect("boardinghouse.db")
     cursor = conn.cursor()
 
-    # Get room of reservation
+
     cursor.execute("""
     SELECT room_id
     FROM reservations
@@ -205,7 +218,6 @@ def approve(id):
 
     room_id = cursor.fetchone()[0]
 
-    # Get room capacity
     cursor.execute("""
     SELECT capacity
     FROM rooms
@@ -214,7 +226,6 @@ def approve(id):
 
     capacity = cursor.fetchone()[0]
 
-    # Count approved occupants
     cursor.execute("""
     SELECT COUNT(*)
     FROM reservations
@@ -243,11 +254,30 @@ def approve(id):
     room_id = cursor.fetchone()[0]
 
     cursor.execute("""
-    UPDATE rooms
-    SET status='Occupied'
+    SELECT COUNT(*)
+    FROM reservations
+    WHERE room_id=?
+    AND status='Approved'
+    """, (room_id,))
+
+    occupants = cursor.fetchone()[0]
+
+    cursor.execute("""
+    SELECT capacity
+    FROM rooms
     WHERE id=?
     """, (room_id,))
-   
+
+    capacity = cursor.fetchone()[0]
+
+    if occupants >= capacity:
+
+        cursor.execute("""
+        UPDATE rooms
+        SET status='Occupied'
+        WHERE id=?
+        """, (room_id,))
+
     conn.commit()
     conn.close()
 
