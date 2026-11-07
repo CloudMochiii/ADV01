@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+
+    <a href="/">
+        Home
+    </a>
+
+    <a href="/admin">
+        Admin Dashboard
+    </a>
+
+    <a href="/logout">
+        Logout
+    </a>
+
+</div>
+
+<div class="filter-buttons">
+
+    <a class="filter-btn" href="/admin">
+        All
+    </a>
+
+    <a class="filter-btn" href="/filter/Pending">
+        Pending
+    </a>
+
+    <a class="filter-btn" href="/filter/Approved">
+        Approved
+    </a>
+
+    <a class="filter-btn" href="/filter/Completed">
+        Completed
+    </a>
+
+    <a class="filter-btn" href="/filter/Rejected">
+        Rejected
+    </a>
+
+</div>
+
+<br>
+
+<h1>Reservation Records</h1>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>{{ total }}</h2>
+        <p>Total Reservations</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ approved }}</h2>
+        <p>Approved</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ pending }}</h2>
+        <p>Pending</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ rejected }}</h2>
+        <p>Rejected</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ completed }}</h2>
+        <p>Completed</p>
+    </div>
+
+</div>
+
+<hr>
+
+<form action="/search">
+
+    <input
+        class="search-box"
+        type="text"
+        name="keyword"
+        placeholder="Search Student">
+
+    <button class="search-btn" type="submit">
+        Search
+    </button>
+
+</form>
+
+<br>
+
+<table border="1">
+
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Student ID</th>
+    <th>Room</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+
+{% for reservation in reservations %}
+
+<tr>
+    <td>{{ reservation[0] }}</td>
+    <td>{{ reservation[1] }}</td>
+    <td>{{ reservation[2] }}</td>
+    <td>{{ reservation[3] }}</td>
+    <td>{{ reservation[4] }}</td>
+    <td>
+
+    {% if reservation[5] == "Approved" %}
+        <span class="approved">
+            Approved
+        </span>
+
+    {% elif reservation[5] == "Rejected" %}
+        <span class="rejected">
+            Rejected
+        </span>
+
+    {% elif reservation[5] == "Completed" %}
+        <span class="completed">
+            Completed
+        </span>
+
+    {% else %}
+        <span class="pending">
+            Pending
+        </span>
+
+    {% endif %}
+
+</td>
+
+    <td>
+
+        {% if reservation[5] == "Pending" %}
+
+            <a
+                class="action-btn approve-btn"
+                href="/approve/{{ reservation[0] }}"
+                onclick="return confirm('Approve this reservation?')">
+                Approve
+            </a>
+
+            <a
+                class="action-btn reject-btn"
+                href="/reject/{{ reservation[0] }}"
+                onclick="return confirm('Reject this reservation?')">
+                Reject
+            </a>
+
+        {% elif reservation[5] == "Approved" %}
+
+            <a
+                class="action-btn vacate-btn"
+                href="/vacate/{{ reservation[0] }}"
+                onclick="return confirm('Vacate this room?')">
+                Vacate
+            </a>
+
+        {% elif reservation[5] == "Rejected" %}
+
+            <a 
+                class="action-btn delete-btn"
+                href="/delete/{{ reservation[0] }}"
+                onclick="return confirm('Are you sure?')">
+                Delete
+            </a>
+
+        {% elif reservation[5] == "Completed" %}
+
+            <a
+                class="action-btn delete-btn"
+                href="/delete/{{ reservation[0] }}"
+                onclick="return confirm('Are you sure?')">
+                Delete
+            </a>
+
+        {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

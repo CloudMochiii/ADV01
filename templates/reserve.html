@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserve Room</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <a href="/">Home</a>
+
+    <a href="/admin">
+        Admin Dashboard
+    </a>
+
+</div>
+
+<div class="room-card">
+
+    <h3>Please Review Before Submission</h3>
+
+    <ul>
+        <li>Ensure your Student ID is correct.</li>
+        <li>Reservations require administrator approval.</li>
+        <li>Occupied rooms cannot be reserved.</li>
+    </ul>
+
+</div>
+
+<div class="room-card">
+
+    <h2>Reservation Summary</h2>
+
+    <p>
+        <strong>Room:</strong> {{ room[1] }}
+    </p>
+
+    <p>
+        <strong>Type:</strong> {{ room[2] }}
+    </p>
+
+    <p>
+        <strong>Capacity:</strong> {{ room[3] }} Person(s)
+    </p>
+
+    <p>
+        <strong>Monthly Rate:</strong>
+        ₱{{ "{:,.0f}".format(room[4]) }}
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+        {{ room[5] }}
+    </p>
+
+</div>
+
+<br>
+
+<div class="room-card">
+
+    <h1>Reserve Room</h1>
+
+    <form method="POST">
+
+        <input
+            class="form-input"
+            type="text"
+            name="student_name"
+            placeholder="Student Name"
+            required>
+
+        <br><br>
+
+        <input
+            class="form-input"
+            type="text"
+            name="student_id"
+            placeholder="Student ID"
+            required>
+
+        <br><br>
+
+        <input
+            class="form-input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required>
+
+        <br><br>
+
+        <input
+            class="form-input"
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            required>
+
+        <br><br>
+
+        <input
+            class="form-input"
+            type="date"
+            name="check_in_date"
+            required>
+
+        <br><br>
+
+        <input
+            class="form-input"
+            type="number"
+            name="stay_duration"
+            placeholder="Stay Duration (Months)"
+            min="1"
+            required>
+
+        <button
+            class="reserve-btn"
+            type="submit">
+            Submit Reservation
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

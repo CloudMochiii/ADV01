@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boarding House Reservation System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+
+    <a href="/">
+        Home
+    </a>
+
+    <a href="/admin">
+        Admin Dashboard
+    </a>
+
+</div>
+
+    <h1>Boarding House Reservation System</h1>
+
+<p>
+    Browse available rooms and submit your reservation request.
+</p>
+
+    <div class="room-container">
+
+    {% for room, occupants in rooms %}
+
+        <div class="room-card">
+
+            <h2>Room {{ room[1] }}</h2>
+
+            <p><strong>Type:</strong> {{ room[2] }}</p>
+
+            <p><strong>Capacity:</strong> {{ room[3] }} Person(s)</p>
+
+            <p><strong>Monthly Rate:</strong> ₱{{ "{:,.0f}".format(room[4]) }}</p>
+
+            <p><strong>Status:</strong> {{ room[5] }}</p>
+
+            {% if room[5] == "Available" %}
+
+            <a
+                class="reserve-btn"
+                href="/reserve/{{ room[0] }}">
+                Reserve Room
+            </a>
+
+            {% else %}
+
+            <p>
+                <strong>Room Occupied</strong>
+            </p>
+
+            {% endif %}
+
+            <p>
+                <strong>Occupancy:</strong>
+                {{ occupants }} / {{ room[3] }}
+            </p>
+
+        </div>
+
+    {% endfor %}
+
+        </div>
+
+        <br>
+
+        <div class="room-card">
+
+            <h2>Boarding House Rules</h2>
+
+            <ul>
+                <li>No smoking inside rooms and common areas.</li>
+                <li>Keep rooms and shared spaces clean at all times.</li>
+                <li>Visitors are allowed only during approved visiting hours.</li>
+                <li>Monthly payments must be settled on time.</li>
+                <li>Students are responsible for their personal belongings.</li>
+            </ul>
+
+        </div>
+
+</body>
+</html>
