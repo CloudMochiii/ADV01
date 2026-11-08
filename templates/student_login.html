@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <a href="/login">
+        Admin Login
+    </a>
+
+</div>
+
+<div class="auth-container">
+
+    <div class="room-card auth-card">
+
+        <h1 class="portal-title">
+            🏠 Boarding House Reservation System
+        </h1>
+
+        <h3 class="portal-subtitle">
+            Student Portal
+        </h3>
+
+        <p>
+            Login to manage your reservations,
+            track approval status,
+            and submit cancellation requests.
+        </p>
+
+        <form method="POST">
+
+            <input
+                class="form-input"
+                type="text"
+                name="login"
+                placeholder="Student ID or Email"
+                required>
+
+            <br><br>
+
+            <input
+                class="form-input"
+                type="password"
+                name="password"
+                placeholder="Password"
+                required>
+
+            <br><br>
+
+            <button
+                class="reserve-btn"
+                type="submit">
+
+                Login
+
+            </button>
+
+            <hr>
+
+            <p>
+                Don't have an account yet?
+            </p>
+
+            <a
+                class="register-btn"
+                href="/student-register">
+                    Create Account
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -13,10 +13,6 @@
 
     <a href="/">Home</a>
 
-    <a href="/admin">
-        Admin Dashboard
-    </a>
-
 </div>
 
 <div class="room-card">
@@ -57,6 +53,16 @@
         {{ room[5] }}
     </p>
 
+    <p>
+        <strong>Reserving As:</strong>
+        {{ student[0] }}
+    </p>
+
+    <p>
+        <strong>Gender:</strong>
+        {{ student[3] }}
+    </p>
+
 </div>
 
 <br>
@@ -66,55 +72,6 @@
     <h1>Reserve Room</h1>
 
     <form method="POST">
-
-        <input
-            class="form-input"
-            type="text"
-            name="student_name"
-            placeholder="Student Name"
-            required>
-
-        <br><br>
-
-        <input
-            class="form-input"
-            type="text"
-            name="student_id"
-            placeholder="Student ID"
-            required>
-
-        <br><br>
-
-        <input
-            class="form-input"
-            type="email"
-            name="email"
-            placeholder="Email"
-            required>
-
-        <br><br>
-
-        <input
-            class="form-input"
-            type="text"
-            name="phone"
-            placeholder="Phone Number"
-            required>
-
-        <br><br>
-
-        <label>Gender</label>
-
-        <select
-            class="form-input"
-            name="gender"
-            required>
-
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-
-        </select>
 
         <input
             class="form-input"
@@ -131,6 +88,8 @@
             placeholder="Stay Duration (Months)"
             min="1"
             required>
+
+        <br><br>
 
         <button
             class="reserve-btn"

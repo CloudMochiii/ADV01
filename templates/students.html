@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Accounts</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <a href="/home">
+        Home
+    </a>
+
+    <a href="/admin">
+        Admin Dashboard
+    </a>
+
+</div>
+
+<h1>Student Accounts</h1>
+
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Student ID</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Student ID Image</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for student in students %}
+
+    <tr>
+
+        <td>{{ student[0] }}</td>
+
+        <td>{{ student[1] }}</td>
+
+        <td>{{ student[2] }}</td>
+
+        <td>{{ student[3] }}</td>
+
+        <td>{{ student[4] }}</td>
+
+        <td>{{ student[5] }}</td>
+
+        <td>
+
+            <a
+                class="reserve-btn"
+                target="_blank"
+                href="{{ url_for('static', filename='uploads/' + student[7]) }}">
+                    View ID
+            </a>
+
+        </td>
+
+        <td>
+
+            <a
+                class="action-btn delete-btn"
+                href="/delete-student/{{ student[0] }}"
+                onclick="return confirm('Delete this account?')">
+
+                Delete
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

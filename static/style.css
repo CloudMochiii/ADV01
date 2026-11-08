@@ -1,11 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-    background-color: #f4f4f4;
+    background: linear-gradient(
+        135deg,
+        #e3f2fd,
+        #f5f7fa
+    );
+    min-height: 100vh;
 }
 
 h1 {
     color: #333;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 table {
@@ -114,28 +119,31 @@ form {
 }
 
 .reserve-btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #007bff;
+    background-color: #007bff;
     color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
     text-decoration: none;
-    border-radius: 5px;
+    display: inline-block;
 }
 
 .reserve-btn:hover {
-    background: #0056b3;
+    background-color: #0056b3;
 }
 
 .navbar {
-    background: #007bff;
+    background-color: #007bff;
     padding: 15px;
-    margin-bottom: 20px;
+    text-align: center;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    margin-right: 20px;
+    margin: 0 15px;
     font-weight: bold;
 }
 
@@ -207,6 +215,18 @@ form {
     background-color: #0056b3;
 }
 
+.filter-section {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 25px auto;
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filter-section .tab {
+    margin: 0 5px;
+}
 
 .female-room {
     background-color: #ff69b4;
@@ -220,4 +240,123 @@ form {
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
+}
+
+.login-container {
+    max-width: 450px;
+    margin: 80px auto;
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.portal-title {
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.portal-subtitle {
+    color: #007bff;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.welcome-text {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.register-btn {
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-btn:hover {
+    background-color: #545b62;
+}
+
+.login-card .form-input {
+    width: 100%;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+.auth-card h1,
+.auth-card p {
+    text-align: center;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-card .form-input {
+    width: 90%;
+}
+
+.auth-card button {
+    align-self: center;
+}
+
+.auth-card label {
+    text-align: center;
+    display: block;
+}
+
+.auth-card input[type="file"] {
+    margin: 0 auto;
+}
+
+
+.admin-title {
+    text-align: center;
+    margin: 25px 0;
 }
